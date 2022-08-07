@@ -1,66 +1,53 @@
 import classes from './AvailableMeals.module.css'
 import Card from '../UI/Card';
-import MealItems from './MealItems/MealItems';
+import PaginationMeals from './PaginationMeals';
 import axios from 'axios';
-import {  useEffect, useState } from 'react';
-
-
-
-// const DUMMY_MEALS = [
-//     {
-//         id: 'm1',
-//         name: 'Sushi',
-//         description: 'Finest fish and veggies',
-//         price: 22.99,
-//     },
-//     {
-//         id: 'm2',
-//         name: 'Schnitzel',
-//         description: 'A german specialty!',
-//         price: 16.5,
-//     },
-//     {
-//         id: 'm3',
-//         name: 'Barbecue Burger',
-//         description: 'American, raw, meaty',
-//         price: 12.99,
-//     },
-//     {
-//         id: 'm4',
-//         name: 'Green Bowl',
-//         description: 'Healthy...and green...',
-//         price: 18.99,
-//     },
-// ];
+import { useEffect, useState } from 'react';
 
 const AvailableMeals = () => {
 
-    const [dumMeals, setDumMeals] = useState();
+    const [dumMeals, setDumMeals] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [httpError, setHttpError] = useState(null);
 
 
     const fetchMealApi = async () => {
-            const response = await axios.get('https://www.themealdb.com/api/json/v1/1/categories.php');
-            setDumMeals(response.data.categories);
-        };
-
+        try {
+            const response = await axios.get('https://www.themealdb.com/api/json/v1/1/list.php?i=list');
+            const data = await response.data.meals;
+            if (response.status === 200) {
+                setDumMeals(data);
+                setIsLoading(false);
+            } else {
+                throw new Error('Something when wrong !!!');
+            }
+            console.log(response)
+        } catch (error) {
+            setIsLoading(false);
+            setHttpError(error.message);
+        }
+    };
 
     useEffect(() => {
         fetchMealApi();
     }, []);
-    
-    const mealList = dumMeals?.map(meal => <MealItems
-        key={meal.idCategory}
-        id={meal.idCategory}
-        name={meal.strCategory}
-        description={meal.strCategoryDescription}
-        price={0.69 * Math.random() * meal.idCategory}
-    />)
+
+    if (httpError) {
+        return <section className={classes.error}>
+            <p>{httpError}</p>
+        </section>
+    }
+
+    if (isLoading) {
+        return <section className={classes.load}>
+            <span className={classes.loader}></span>
+            <p>Loading</p>
+        </section>
+    }
 
     return <section className={classes.meals}>
         <Card>
-            <ul>
-                {mealList}
-            </ul>
+            <PaginationMeals items={dumMeals} />
         </Card>
     </section>
 };
