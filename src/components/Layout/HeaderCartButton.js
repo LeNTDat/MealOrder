@@ -10,8 +10,6 @@ const HeaderCartButton = (props) => {
 
     const { items } = context;
 
-    console.log(items)
-
     let itemsIndex = items.reduce((curValue, item) => {
         return curValue + item.amount;
     }, 0);

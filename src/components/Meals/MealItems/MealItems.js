@@ -7,28 +7,30 @@ const MealItems = (props) => {
 
     const price = `$${props.price.toFixed(2)}`
     const ctx = useContext(CartContext);
-    const getItemsHandler = (value)=>{
+    const getItemsHandler = (value) => {
         const itemsInput = {
             id: props.id,
             name: props.name,
             price: props.price,
             amount: value
         };
-
+        ctx.setFilter(false)
         ctx.addItem(itemsInput);
     };
 
 
-    return <li  className={classes.meal}>
-        <div>
-            <h3>{props.name}</h3>
-            <div className={classes.description}>{props.description}</div>
-            <div className={classes.price}>{price}</div>
-        </div>
-        <div>
-            <MealItemForm id = {props.id} getItemAmount = {getItemsHandler}/>
-        </div>
-    </li>
+    return <>
+        <li className={classes.meal}>
+            <div>
+                <h3>{props.name}</h3>
+                <div className={classes.description}>{props.description}</div>
+                <div className={classes.price}>{price}</div>
+            </div>
+            <div>
+                <MealItemForm id={props.id} getItemAmount={getItemsHandler} />
+            </div>
+        </li>
+    </>
 };
 
 export default MealItems;

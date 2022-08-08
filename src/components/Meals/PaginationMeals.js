@@ -41,14 +41,13 @@ const PaginationMeals = (props) => {
             <div className={classes.page}>
                 <ReactPaginate
                     pageClassName ={classes['list-button']}
+                    breakClassName ={classes.break}
                     onPageChange={handlerPageClick}
                     pageCount={pageCount}
                     renderOnZeroPageCount={null}
                     previousLabel={null}
                     nextLabel={null}
-                    breakLabel="xxx"
                     pageRangeDisplayed={5}
-                    breakClassName={classes.break}
                 />
             </div>
         </>

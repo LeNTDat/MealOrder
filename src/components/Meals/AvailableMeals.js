@@ -2,14 +2,17 @@ import classes from './AvailableMeals.module.css'
 import Card from '../UI/Card';
 import PaginationMeals from './PaginationMeals';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import MealSearchItems from './MealItems/MealSearchItems';
+import CartContext from '../../store/cart-context';
 
 const AvailableMeals = () => {
 
     const [dumMeals, setDumMeals] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [httpError, setHttpError] = useState(null);
-
+    const [filterItems, setFilterItems] = useState([]); 
+    const {isFilter} = useContext(CartContext);   
 
     const fetchMealApi = async () => {
         try {
@@ -21,7 +24,6 @@ const AvailableMeals = () => {
             } else {
                 throw new Error('Something when wrong !!!');
             }
-            console.log(response)
         } catch (error) {
             setIsLoading(false);
             setHttpError(error.message);
@@ -31,6 +33,7 @@ const AvailableMeals = () => {
     useEffect(() => {
         fetchMealApi();
     }, []);
+
 
     if (httpError) {
         return <section className={classes.error}>
@@ -44,10 +47,17 @@ const AvailableMeals = () => {
             <p>Loading</p>
         </section>
     }
+    
+    const onSearchAndFilterItemsHandler = (value)=>{
+        setFilterItems(value);
+    }
+
 
     return <section className={classes.meals}>
         <Card>
-            <PaginationMeals items={dumMeals} />
+            <MealSearchItems items={dumMeals} onSearch= {onSearchAndFilterItemsHandler}/>
+            {!isFilter ? <PaginationMeals items={dumMeals}/>:
+            <PaginationMeals items={filterItems}/>}
         </Card>
     </section>
 };
