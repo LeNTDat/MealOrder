@@ -1,0 +1,45 @@
+.image {
+    max-width: 200px;
+    height: 200px;
+    display: inline-block;
+    text-align: right;
+}
+
+.description {
+    font-style: italic;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: inline-block;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+}
+
+.popup .cancel{
+    text-align: right;
+    font-size: 20px;
+    color: #8a2b06;
+    margin: 0;
+    padding: 0;
+}
+
+.popup .cartbtn{
+    text-align: right;
+}
+
+.popup button {
+    font: inherit;
+    cursor: pointer;
+    background-color: #8a2b06;
+    border: 1px solid #8a2b06;
+    color: white;
+    padding: 0.25rem 2rem;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.popup button:hover,
+.popup button:active {
+    background-color: #641e03;
+    border-color: #641e03;
+}

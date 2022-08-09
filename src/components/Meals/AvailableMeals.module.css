@@ -11,13 +11,6 @@
   margin: 0;
 }
 
-.error p {
-  color: red;
-  text-align: center;
-  margin: 2rem auto;
-}
-
-
 .loader {
   display: block;
   border: 5px solid #8f8d8d;
@@ -27,6 +20,12 @@
   width: 25px;
   height: 25px;
   animation: spin 2s linear infinite;
+}
+
+.error p {
+  color: red;
+  text-align: center;
+  margin: 2rem auto;
 }
 
 .meals ul {
