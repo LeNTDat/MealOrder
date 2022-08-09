@@ -1,8 +1,9 @@
 import classes from './PopUpItems.module.css';
 
 const PopUpItems = (props) => {
+    const defaultAmount = 1;
     const addItemToCartHandler = ()=>{
-        props.onAdd(1); 
+        props.onAdd(defaultAmount); 
         props.onClose();
     };
 

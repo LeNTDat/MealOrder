@@ -15,12 +15,12 @@ const MealItems = (props) => {
     const ctx = useContext(CartContext);
     const fetchOption = {
         method: 'GET',
-        url: 'https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/Search/ImageSearchAPI',
-        params: { q: props.name, pageNumber: '2', pageSize: '1', autoCorrect: 'true' },
+        url: 'https://google-image-search1.p.rapidapi.com/v2/',
+        params: { q: props.name, hl: 'en' },
         headers: {
             'X-RapidAPI-Key': 'd0f191bd7cmsh4dae4f35680e3b4p143012jsn0b66ad6455f7',
-            'X-RapidAPI-Host': 'contextualwebsearch-websearch-v1.p.rapidapi.com'
-        }
+            'X-RapidAPI-Host': 'google-image-search1.p.rapidapi.com'
+          }
     }
     const { isLoading, fetchMealApi } = useFetch();
 
@@ -36,7 +36,7 @@ const MealItems = (props) => {
     };
 
     const getItemImageHandler = (data) => {
-        setTakeItem(data.value[0].thumbnail);
+        setTakeItem(data.response.images[0].thumbnail.url);
     };
 
     const showModalItemsHandler = () => {
