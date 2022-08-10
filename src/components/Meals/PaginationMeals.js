@@ -11,7 +11,7 @@ const Items = ({ currentItems }) => {
                     key={meal.idIngredient}
                     id={meal.idIngredient}
                     name={meal.strIngredient}
-                    description={meal.strDescription === null ? `We are updating this info about ${meal.strIngredient}` : meal.strDescription }
+                    description={meal.strDescription === null ? `We are updating this info about ${meal.strIngredient}` : meal.strDescription}
                     price={0.99}
                 />
             )}
@@ -40,8 +40,8 @@ const PaginationMeals = (props) => {
             <Items currentItems={currentItems} />
             <div className={classes.page}>
                 <ReactPaginate
-                    pageClassName ={classes['list-button']}
-                    breakClassName ={classes.break}
+                    pageClassName={classes['list-button']}
+                    breakClassName={classes.break}
                     onPageChange={handlerPageClick}
                     pageCount={pageCount}
                     renderOnZeroPageCount={null}

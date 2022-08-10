@@ -5,21 +5,21 @@ import { useState } from "react";
 import CartProvider from "./store/CartProvider";
 
 function App() {
- 
+
   const [cartShow, setCartShow] = useState(false);
 
-  const CloseCartHandler = ()=>{
+  const CloseCartHandler = () => {
     setCartShow(false);
   };
 
-  const ShowCartHandler = ()=>{
+  const ShowCartHandler = () => {
     setCartShow(true);
   };
 
   return (
     <CartProvider>
-      {cartShow && <Cart isShow = {cartShow} onCloseHandler = {CloseCartHandler}/>}
-      <Header onShowHandler = {ShowCartHandler} />
+      {cartShow && <Cart isShow={cartShow} onCloseHandler={CloseCartHandler} />}
+      <Header onShowHandler={ShowCartHandler} />
       <main>
         <Meals></Meals>
       </main>

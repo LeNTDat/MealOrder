@@ -22,15 +22,16 @@ const AvailableMeals = () => {
         fetchMealApi({
             method: 'GET',
             url: 'https://www.themealdb.com/api/json/v1/1/list.php?i=list',
-            params: {},
-            headers: {}
+            params:{},
+            headers:{}
+
         }, getMealData);
     }, [fetchMealApi]);
 
     if (httpError) {
         return <section className={classes.error}>
             <p>{httpError}</p>
-        </section>
+        </section>;
     };
 
     if (isLoading) {

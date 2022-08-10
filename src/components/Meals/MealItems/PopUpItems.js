@@ -1,15 +1,16 @@
 import classes from './PopUpItems.module.css';
+import {GiCancel} from 'react-icons/gi'
 
 const PopUpItems = (props) => {
     const defaultAmount = 1;
-    const addItemToCartHandler = ()=>{
-        props.onAdd(defaultAmount); 
+    const addItemToCartHandler = () => {
+        props.onAdd(defaultAmount);
         props.onClose();
     };
 
     return <section className={classes.popup}>
-        <p className={classes.cancel}>X
-        </p>
+        <GiCancel className={classes.cancel}/>
+        <p>{props.name}</p>
         <img className={classes.image} src={props.item} alt={props.name} />
         <p className={classes.description}>
             {props.description}
