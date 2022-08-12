@@ -19,7 +19,8 @@ const Cart = (props) => {
             method: 'POST',
             url: 'https://food-oder-4edb3-default-rtdb.asia-southeast1.firebasedatabase.app/order.json',
             data: {data}
-        })
+        });
+        props.onCloseHandler();
     };
 
 
